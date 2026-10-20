@@ -6,5 +6,9 @@ import java.lang.annotation.*;
 // RECORD_COMPONENT permite ao Validator encontrar a regra em getRecordComponents().
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.RECORD_COMPONENT)
+<<<<<<< HEAD
 public @interface NotBlank {
 }
+=======
+public @interface NotBlank {}
+>>>>>>> e71cef4529f4e7eb37761a681bdd053c4657dd4b
