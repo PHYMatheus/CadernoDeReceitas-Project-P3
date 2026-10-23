@@ -1,7 +1,6 @@
 package br.com.minispring.CadernoDeReceitas.repository;
 import br.com.minispring.CadernoDeReceitas.model.ReceitaCulinaria;
 import br.com.minispring.framework.annotation.Repository;
-import br.com.minispring.CadernoDeReceitas.model.ReceitaCulinariaInput;
 import java.util.*;
 import java.util.ArrayList;
 import java.util.Comparator;
