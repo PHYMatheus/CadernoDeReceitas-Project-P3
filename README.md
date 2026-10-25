@@ -196,48 +196,14 @@ Ingrediente
 
 | Método | Rota | Descrição |
 |---|---|---|
-| `GET` | `/receitas` | Lista todas as receitas. |
-| `GET` | `/receitas/{id}` | Retorna os detalhes de uma receita. |
-| `POST` | `/receitas` | Cadastra uma nova receita. |
-| `PUT` | `/receitas/{id}` | Atualiza uma receita existente. |
+| `GET`    | `/receitas` | Lista todas as receitas. |
+| `GET`    | `/receitas/{id}` | Retorna os detalhes de uma receita. |
+| `POST`   | `/receitas` | Cadastra uma nova receita. |
+| `PUT`    | `/receitas/{id}` | Atualiza uma receita existente. |
 | `DELETE` | `/receitas/{id}` | Remove uma receita. |
-| `GET` | `/receitas/busca?ingrediente={nome}` | Busca receitas por ingrediente. |
-| `GET` | `/receitas/{id}/porcoes/{n}` | Retorna a receita recalculada para `n` porções. |
-| `PUT` | `/receitas/{id}/favorita` | Alterna o estado de favorita. |
-
-### 8.1 Exemplo de requisição
-
-```http
-POST /receitas
-Content-Type: application/json
-
-{
-  "nome": "Brigadeiro de Colher",
-  "categoria": "DOCES",
-  "porcoes": 4,
-  "tempoPreparo": 15,
-  "ingredientes": [
-    { "nome": "leite condensado", "quantidade": 1, "unidade": "lata" },
-    { "nome": "chocolate em pó",  "quantidade": 3, "unidade": "colher" },
-    { "nome": "manteiga",         "quantidade": 1, "unidade": "colher" }
-  ],
-  "modoPreparo": [
-    "Misturar todos os ingredientes em uma panela.",
-    "Cozinhar em fogo baixo, mexendo continuamente, até desgrudar do fundo.",
-    "Servir em recipiente individual."
-  ]
-}
-```
-
-### 8.2 Exemplo de recálculo de porções
-
-```http
-GET /receitas/1/porcoes/12
-```
-
-A resposta contém a receita com as quantidades dos ingredientes proporcionalmente ajustadas para 12 porções.
-
----
+| `GET`    | `/receitas/busca?ingrediente={nome}` | Busca receitas por ingrediente. |
+| `GET`    | `/receitas/{id}/porcoes/{n}` | Retorna a receita recalculada para `n` porções. |
+| `PUT`    | `/receitas/{id}/favorita` | Alterna o estado de favorita. |
 
 ## 9. Instruções de execução
 
@@ -320,7 +286,7 @@ mvn test
 | Matheus  | Desenvolvimento e arquitetura |
 | Tainon   | Desenvolvimento e arquitetura |
 | Vinicius | Desenvolvimento e arquitetur  |
-| Igor     | Desenvolvimento e arquitetura |
+| Igor     | Desenvolvimento e Testes      |
 
 **Disciplina:** Programação 3
 **Curso:** Sistemas de Informação
