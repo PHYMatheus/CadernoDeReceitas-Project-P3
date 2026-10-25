@@ -281,7 +281,7 @@ mvn test
 
 ## 10. Tecnologias utilizadas
 
-- **Java 17** (reflexão, anotações, streams, records)
+- **Java 21** (reflexão, anotações, streams, records)
 - **Maven** (gerenciamento de dependências e build)
 - **com.sun.net.httpserver** (servidor HTTP embutido no JDK)
 - **Gson / Jackson** (serialização e desserialização JSON)
@@ -318,11 +318,12 @@ mvn test
 | Nome     | Responsabilidade              |
 |----------|-------------------------------|
 | Matheus  | Desenvolvimento e arquitetura |
+| Tainon   | Desenvolvimento e arquitetura |
+| Vinicius | Desenvolvimento e arquitetur  |
 | Igor     | Desenvolvimento e arquitetura |
-| Vinicius | *(responsabilidade)*          |
 
 **Disciplina:** Programação 3
 **Curso:** Sistemas de Informação
 **Professor(a):** *Alisson Ferreira*
 **Instituição:** *Unifacol
-**Período/Ano:** *(semestre/ano)*
+**Período:** *(4º Período)*
