@@ -1,0 +1,948 @@
+{
+  "info": {
+    "name": "API Receitas - Testes CRUD e Validações",
+    "description": "Coleção de testes da API de receitas. Ajuste a variável baseUrl conforme o ambiente. Os códigos entre colchetes nos nomes indicam o status HTTP esperado.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Fluxo de sucesso (CRUD completo)",
+      "item": [
+        {
+          "name": "1.1 Criar Receita #1 [201 Created]",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/receitas",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "receitas"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Bolo de Cenoura com Cobertura de Chocolate\",\n  \"duracaoDoPreparoMinutos\": 67.0,\n  \"Ingredientes\": [\n    \"3 cenouras médias\",\n    \"4 ovos\",\n    \"2 xícaras de açúcar\",\n    \"2 e 1/2 xícaras de farinha de trigo\",\n    \"1 colher de sopa de fermento em pó\"\n  ],\n  \"TutorialPreparo\": \"Bata as cenouras, os ovos e o óleo no liquidificador, misture os secos e asse a 180°C por 40 minutos.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "1.2 Criar Receita #2 [201 Created]",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/receitas",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "receitas"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Lasanha à Bolonhesa\",\n  \"duracaoDoPreparoMinutos\": 90.0,\n  \"Ingredientes\": [\n    \"500g de massa para lasanha\",\n    \"500g de carne moída\",\n    \"2 sachês de molho de tomate\",\n    \"300g de queijo mussarela\",\n    \"300g de presunto\"\n  ],\n  \"TutorialPreparo\": \"Monte camadas alternadas de molho, massa, presunto e queijo. Leve ao forno por 30 minutos.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "1.3 Criar Receita #3 - limite máximo [201 Created]",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/receitas",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "receitas"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Pernil Marinado Assado Lentamente\",\n  \"duracaoDoPreparoMinutos\": 1440.0,\n  \"Ingredientes\": [\n    \"1 peça de pernil suíno (3kg)\",\n    \"1 garrafa de vinho branco seco\",\n    \"6 dentes de alho amassados\",\n    \"Ramos de alecrim e sal a gosto\"\n  ],\n  \"TutorialPreparo\": \"Marine o pernil por 18 horas na geladeira e asse em fogo baixo coberto com papel-alumínio por 6 horas.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "1.4 Listar todas",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/receitas",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "receitas"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "1.5 Filtrar por nome",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/receitas?nome=bolo",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "receitas"
+              ],
+              "query": [
+                {
+                  "key": "nome",
+                  "value": "bolo"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "1.6 Filtro sem resultados",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/receitas?nome=sushi",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "receitas"
+              ],
+              "query": [
+                {
+                  "key": "nome",
+                  "value": "sushi"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "1.7 Consultar por ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/receitas/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "receitas",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "1.8 Atualizar por ID [200 OK]",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/receitas/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "receitas",
+                "1"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Bolo de Cenoura Especial de Brigaderia\",\n  \"duracaoDoPreparoMinutos\": 65.0,\n  \"Ingredientes\": [\n    \"3 cenouras médias\",\n    \"4 ovos\",\n    \"2 xícaras de açúcar\",\n    \"2 e 1/2 xícaras de farinha de trigo\",\n    \"1 lata de leite condensado\",\n    \"200g de chocolate meio amargo\"\n  ],\n  \"TutorialPreparo\": \"Prepare a massa tradicional e finalize cobrindo com brigadeiro cremoso meio amargo.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "1.9 Excluir receita existente por ID [204 No Content]",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/receitas/3",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "receitas",
+                "3"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "2. Validações de entrada e campos obrigatórios",
+      "item": [
+        {
+          "name": "2.1 Nome em branco [400 Bad Request]",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/receitas",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "receitas"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"   \",\n  \"duracaoDoPreparoMinutos\": 30.0,\n  \"Ingredientes\": [\n    \"2 ovos\",\n    \"1 colher de manteiga\"\n  ],\n  \"TutorialPreparo\": \"Frite os ovos na manteiga em fogo baixo.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "2.2 Tutorial em branco [400 Bad Request]",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/receitas",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "receitas"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Omelete Simples\",\n  \"duracaoDoPreparoMinutos\": 15.0,\n  \"Ingredientes\": [\n    \"2 ovos\",\n    \"Sal a gosto\"\n  ],\n  \"TutorialPreparo\": \"   \"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "2.3 Duração zero [400 Bad Request]",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/receitas",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "receitas"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Receita Tempo Zero\",\n  \"duracaoDoPreparoMinutos\": 0,\n  \"Ingredientes\": [\n    \"Água filtrada\"\n  ],\n  \"TutorialPreparo\": \"Sirva imediatamente.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "2.4 Duração negativa [400 Bad Request]",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/receitas",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "receitas"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Receita Tempo Negativo\",\n  \"duracaoDoPreparoMinutos\": -15.0,\n  \"Ingredientes\": [\n    \"Água filtrada\"\n  ],\n  \"TutorialPreparo\": \"Sirva imediatamente.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "2.5 Ingredientes vazio [400 Bad Request]",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/receitas",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "receitas"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Receita Sem Ingredientes\",\n  \"duracaoDoPreparoMinutos\": 20.0,\n  \"Ingredientes\": [],\n  \"TutorialPreparo\": \"Não há ingredientes para preparar.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "2.6 Ingrediente em branco [400 Bad Request]",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/receitas",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "receitas"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Salada de Tomate\",\n  \"duracaoDoPreparoMinutos\": 10.0,\n  \"Ingredientes\": [\n    \"2 tomates maduros\",\n    \"   \",\n    \"Azeite e sal\"\n  ],\n  \"TutorialPreparo\": \"Corte os tomates em rodelas e tempere com azeite e sal.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "2.7 Múltiplos campos inválidos [400 Bad Request]",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/receitas",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "receitas"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"\",\n  \"duracaoDoPreparoMinutos\": 0,\n  \"Ingredientes\": [],\n  \"TutorialPreparo\": \"\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "3. Regras de negócio",
+      "item": [
+        {
+          "name": "3.1 Criar duração acima de 1440 minutos [422 Unprocessable Entity]",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/receitas",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "receitas"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Carne Maturada Artesanal\",\n  \"duracaoDoPreparoMinutos\": 1441.0,\n  \"Ingredientes\": [\n    \"2kg de alcatra\",\n    \"Sal grosso\"\n  ],\n  \"TutorialPreparo\": \"Deixe maturar em temperatura controlada.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "3.2 Atualizar duração acima de 1440 minutos [422 Unprocessable Entity]",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/receitas/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "receitas",
+                "1"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Bolo de Cenoura Demorado\",\n  \"duracaoDoPreparoMinutos\": 2000.0,\n  \"Ingredientes\": [\n    \"3 cenouras\",\n    \"Farinha e açúcar\"\n  ],\n  \"TutorialPreparo\": \"Asse por tempo excessivo.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "4. Validações de ID e recursos inexistentes",
+      "item": [
+        {
+          "name": "4.1 ID não numérico [400 Bad Request]",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/receitas/abc",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "receitas",
+                "abc"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "4.2 ID zero [400 Bad Request]",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/receitas/0",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "receitas",
+                "0"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "4.3 ID negativo [400 Bad Request]",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/receitas/-5",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "receitas",
+                "-5"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "4.4 ID inexistente [404 Not Found]",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/receitas/9999",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "receitas",
+                "9999"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "4.5 Atualizar ID inexistente [404 Not Found]",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/receitas/9999",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "receitas",
+                "9999"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Receita Fantasma\",\n  \"duracaoDoPreparoMinutos\": 30.0,\n  \"Ingredientes\": [\n    \"1 xícara de arroz\"\n  ],\n  \"TutorialPreparo\": \"Cozinhe o arroz em água fervente.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "4.6 Excluir ID inexistente [404 Not Found]",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/receitas/9999",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "receitas",
+                "9999"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "5. Protocolo, serialização e roteamento",
+      "item": [
+        {
+          "name": "5.1 JSON malformado [400 Bad Request]",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/receitas",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "receitas"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\"nome\": \"Receita Incompleta\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "5.2 Ingredientes como String [400 Bad Request]",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/receitas",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "receitas"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Receita Teste\",\n  \"duracaoDoPreparoMinutos\": 60,\n  \"Ingredientes\": \"3 Tomates, Milho, água, leite\",\n  \"TutorialPreparo\": \"Mexa tudo no fogo alto por 30 minutos.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "5.3 Número enviado como String [400 Bad Request]",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/receitas",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "receitas"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Receita Teste\",\n  \"duracaoDoPreparoMinutos\": \"60\",\n  \"Ingredientes\": [\n    \"3 Tomates\"\n  ],\n  \"TutorialPreparo\": \"Mexa tudo no fogo alto.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "5.4 Propriedade desconhecida [400 Bad Request]",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/receitas",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "receitas"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": 10,\n  \"nome\": \"Receita com Campo Extra\",\n  \"duracaoDoPreparoMinutos\": 45.0,\n  \"Ingredientes\": [\n    \"1 cebola\"\n  ],\n  \"TutorialPreparo\": \"Refogue a cebola.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "5.5 Corpo JSON nulo [400 Bad Request]",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/receitas",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "receitas"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "null",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "5.6 Content-Type não suportado [415 Unsupported Media Type]",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/plain"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/receitas",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "receitas"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "texto puro não suportado",
+              "options": {
+                "raw": {
+                  "language": "text"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "5.7 Método não permitido em /receitas/{id} [405 Method Not Allowed]",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/receitas/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "receitas",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "5.8 Método não permitido em /receitas [405 Method Not Allowed]",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/receitas",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "receitas"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://127.0.0.1:8080",
+      "type": "string"
+    }
+  ]
+}
