@@ -8,7 +8,7 @@ Content-Type: application/json
 
 {
   "nome": "Bolo de Cenoura com Cobertura de Chocolate",
-  "duracaoDoPreparoMinutos": 50.0,
+  "duracaoDoPreparoMinutos": 67.0,
   "Ingredientes": [
     "3 cenouras médias",
     "4 ovos",
